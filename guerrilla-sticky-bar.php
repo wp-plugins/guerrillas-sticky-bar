@@ -3,12 +3,12 @@
 Plugin Name: Guerrilla's Sticky Bar
 Plugin URI: http://madebyguerrilla.com
 Description: Add a customizable sticky bar to the top of your website for notifications, promotions and more.
-Version: 1.0
+Version: 1.1
 Author: Mike Smith
 Author URI: http://www.madebyguerrilla.com
 */
 
-/*  Copyright 2014  Mike Smith (email : hi@madebyguerrilla.com)
+/*  Copyright 2015  Mike Smith (email : hi@madebyguerrilla.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
@@ -27,7 +27,7 @@ Author URI: http://www.madebyguerrilla.com
 // This code adds the default stickybar stylesheet to your website
 function guerrilla_stickybar_style() {
 	// Register the style like this for a plugin:
-	wp_register_style( 'guerrilla-sticky-bar', plugins_url( '/style.css', __FILE__ ), array(), '20140412', 'all' );
+	wp_register_style( 'guerrilla-sticky-bar', plugins_url( '/style.css', __FILE__ ), array(), '20150725', 'all' );
 	// For either a plugin or a theme, you can then enqueue the style:
 	wp_enqueue_style( 'guerrilla-sticky-bar' );
 }
@@ -36,7 +36,7 @@ add_action( 'wp_enqueue_scripts', 'guerrilla_stickybar_style' );
 
 // This code adds the default stickybar jquery script to your website
 function guerrilla_stickybar_script() { 
-	wp_enqueue_script('guerrilla-sticky-bar', plugins_url( '/script.js', __FILE__ ), array(), '20140412', 'all' );
+	wp_enqueue_script('guerrilla-sticky-bar', plugins_url( '/script.js', __FILE__ ), array(), '20150725', 'all' );
 }
 
 add_action( 'wp_enqueue_scripts', 'guerrilla_stickybar_script' );
@@ -61,6 +61,7 @@ function stickybar_display_settings() {
     $textcolor = (get_option('stickybar_textcolor') != '') ? get_option('stickybar_textcolor') : '#FFF';
     $text = (get_option('stickybar_text') != '') ? get_option('stickybar_text') : 'Sticky Bar WordPress plugin, Made by Guerrilla';
     $link = (get_option('stickybar_link') != '') ? get_option('stickybar_link') : 'http://www.madebyguerrilla.com/';
+    $cookie = (get_option('stickybar_cookie') != '') ? get_option('stickybar_cookie') : '2';
     $html = '</pre>
 		<script type="text/javascript">
 		jQuery(document).ready(function($){
@@ -72,7 +73,7 @@ function stickybar_display_settings() {
 		' . wp_nonce_field('update-options') . '
 
 		<div style="float:right; width:50%; text-align:right;">
-			<a href="http://www.inspiiired.com/clarity-wordpress-theme" target="_blank"><img src="http://www.inspiiired.com/wp-content/uploads/2013/09/clarity-ad.jpg" alt="Clarity WordPress theme" /></a>
+			<a href="http://www.madebyguerrilla.com/clarity-wordpress-theme" target="_blank"><img src="http://www.inspiiired.com/wp-content/uploads/2013/09/clarity-ad.jpg" alt="Clarity WordPress theme" /></a>
 		</div>
 
 		<div style="float:left; width:50%;">
@@ -105,6 +106,12 @@ function stickybar_display_settings() {
 				</tr>
 				<tr>
 					<td scope="row" align="left">
+						<p>Days before cookie expires</p>
+						<p><input type="text" name="stickybar_cookie" value="' . $cookie . '" /></p>
+					</td>
+				</tr>
+				<tr>
+					<td scope="row" align="left">
 						<input type="hidden" name="action" value="update" />
 						<input type="hidden" name="page_options" value="stickybar_barcolor,stickybar_textcolor,stickybar_text,stickybar_link" />
 						<p><input type="submit" name="Submit" value="Update" class="button-primary" /></p>
@@ -128,6 +135,7 @@ function stickybar_footer() {
     $textcolor2 = (get_option('stickybar_textcolor') != '') ? get_option('stickybar_textcolor') : '#FFF';
     $text2 = (get_option('stickybar_text') != '') ? get_option('stickybar_text') : 'Sticky Bar WordPress plugin, Made by Guerrilla';
     $link2 = (get_option('stickybar_link') != '') ? get_option('stickybar_link') : 'http://www.madebyguerrilla.com/';
+    $cookie2 = (get_option('stickybar_cookie') != '') ? get_option('stickybar_cookie') : '2';
     echo '
 		<script type="text/javascript">
 		jQuery(document).ready(function ($) {
@@ -135,9 +143,10 @@ function stickybar_footer() {
 		  barFontColor:"' . $textcolor2 .'",
 		  barColor:"' . $barcolor2 .'",
 		  barFontSize: "",
-		  barText:"' . $text2 .'",
-		  barTextLink:"' . $link2 .'"
-		});
+		  barText:"'. $text2 .'",
+		  barTextLink:"'. $link2 .'",
+		  cookieRememberDays: "'. $cookie2 .'"
+	});
 		});
 		$(document).ready(function(){
 			$(".close").click(function () { 

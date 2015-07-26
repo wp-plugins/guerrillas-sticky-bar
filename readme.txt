@@ -2,8 +2,8 @@
 Contributors: madebyguerrilla
 Tags: sticky bar, alert bar, notices
 Requires at least: 3.0
-Tested up to: 3.9
-Tag: 1.0
+Tested up to: 4.2.3
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -26,6 +26,11 @@ I came across the [Sticky Alerts](http://longren.io/sticky-alerts-a-new-tiny-jqu
 1. Upload the entire plugin folder to the '/wp-content/plugins/' directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Go to SETTINGS / STICKY BAR and adjust the sticky bar settings.
+
+== Changelog ==
+
+= 1.1 =
+* Add an option for cookies to stop the sticky bar from re-showing on every page load
 
 == Screenshots ==
 
