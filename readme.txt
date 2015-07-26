@@ -11,7 +11,7 @@ Add a customizable sticky bar to the top of your website for notifications, prom
 
 == Description ==
 
-Add a customizable sticky notification bar to the top of your website. Perfect for grabbing the attention of your visitors, even as they scroll down the page.
+Add a customizable sticky notification bar to the top of your website. Perfect for grabbing the attention of your visitors, even as they scroll down the page. 
 
 **What can you change?**
 
